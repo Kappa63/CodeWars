@@ -74,3 +74,12 @@ public static class Kata
 {
   public static int[] ReverseSeq(int n) => Enumerable.Range(1,n).Reverse().ToArray();
 }
+
+
+//Drink about
+public class Kata
+{
+  public static string PeopleWithAgeDrink(int old){
+    return old<14?"drink toddy":old<18?"drink coke":old<21?"drink beer":"drink whisky";
+  }
+}
