@@ -83,3 +83,19 @@ public class Kata
     return old<14?"drink toddy":old<18?"drink coke":old<21?"drink beer":"drink whisky";
   }
 }
+
+
+//Swap Values
+public class Swapper
+{
+    public object[] Arguments { get; private set; }
+    
+    public Swapper(object[] args) => Arguments = args;
+    
+    public void SwapValues()
+    {
+        object temp = Arguments[0];
+        Arguments[0] = Arguments[1];
+        Arguments[1] = temp;
+    }
+}
