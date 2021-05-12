@@ -112,3 +112,13 @@ def productFib(prod):
         return fib[n]
     while x*y < prod: x, y = f(c), f(c+1); c+=1
     return [x, y, x*y==prod]
+
+
+#Can you get the loop ?
+def loop_size(node):
+    x= []
+    while 1:
+        if node in x: return len(x[x.index(node):])
+        x.append(node)
+        node = node.next
+        
