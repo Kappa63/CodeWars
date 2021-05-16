@@ -10,3 +10,23 @@ public class Kata
     return "";
   }
 }
+
+
+//Scramblies
+using System.Linq;
+public class Scramblies 
+{ 
+  public static bool Scramble(string str1, string str2) 
+  {
+    foreach(char ch in str2) if(!(str1.Count(c=> c==ch)>=str2.Count(c=> c==ch))) return false;
+    return true;
+  }
+}
+
+
+//Not very secure
+using System.Linq;
+public class Kata
+{
+  public static bool Alphanumeric(string str)=> str.Length==0?false:str.All(x=> "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890".Contains(x));
+}
