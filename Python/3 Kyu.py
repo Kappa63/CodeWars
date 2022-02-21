@@ -14,31 +14,20 @@ def spiralize(size):
     return A
 
 #Binomial Expansion
-import math
-import regex as re
+import math, regex as re
 def expand(expr):
-    n = re.findall("[- | -\d]+", expr)
-    p = int(n[-1])
-    y = abs(int(n[-2]))
-    try:
-        x = -1 if n[-3] == '-' else int(n[-3])
-    except: 
-        x = 1
-    v = re.findall("[a-z]+", expr)[0]
-    s = []
-    f = {1: "", -1:"-"}
-    for i in range(p+1):
-        cof = math.comb(p, i)*pow(y, i)*pow(x, p-i)
-        cof = f[cof] if cof in f else cof
-        s.append(f"{cof}{v+'^'+str(p-i) if p-i not in [1,0] else v if p-i == 1 else '1' if cof == '' else ''}")
-    if "+" in expr:
-        a = "+".join(s)
+    nums = re.findall("[- | -\d]+", expr)
+    pwr, y, xcof = int(nums[-1]), abs(int(nums[-2])), (-1 if nums[-3] == '-' else int(nums[-3])) if len(nums)>2 else 1
+    var, sols, srpl = re.findall("[a-z]+", expr)[0], [], {1:"", -1:"-"}
+    for i in range(pwr+1):
+        cof = math.comb(pwr, i)*pow(y, i)*pow(xcof, pwr-i)
+        cof = srpl[cof] if cof in srpl else cof
+        sols.append(f"{cof}{var+'^'+str(pwr-i) if pwr-i not in [1,0] else var if pwr-i == 1 else '1' if not cof else ''}")
+    if "+" in expr: ans = "+".join(sols)
     else:
-        a = s[0]
-        x = 1
-        for i in s[1:]:
-            a += ('-' if x else '+')+i
-            x = not x
-    a = a.replace("+-", "-");
-    a = a.replace("--", "+");
-    return a.replace("-+", "-");
+        ans, sign = sols[0], 1
+        for i in sols[1:]:
+            ans += ('-' if sign else '+')+i
+            sign = not sign
+    for fm, to in zip(["+-", "--", "-+"], ["-", "+", "-"]): ans = ans.replace(fm, to)
+    return ans
