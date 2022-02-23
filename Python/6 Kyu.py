@@ -34,6 +34,9 @@ def order(sentence):
     return " ".join(x)
 
 
+#Split Strings
+solution = lambda x: [f"{x[i:i+2]}{'_' if len(x[i:i+2])==1 else ''}" for i in range(0,len(x), 2)]
+
 #Find the unique number
 def find_uniq(arr):
     return [i for i in list(set(arr)) if arr.count(i)==1][0]
