@@ -116,3 +116,7 @@ def next_multiple_of_five(n):
     Fin = {"p0":"0","p1":"01","p2":"1","p3":"11","p4":"011"}
     for i in b[2:]: o = Path[o][i]
     return int(b+Fin[o],2)
+
+
+#Split String
+solution = lambda x: [f"{x[i:i+2]}{'_' if len(x[i:i+2])==1 else ''}" for i in range(0,len(x), 2)]
