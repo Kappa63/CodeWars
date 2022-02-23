@@ -13,6 +13,7 @@ def spiralize(size):
             x, y = xt, yt
     return A
 
+
 #Binomial Expansion
 import math, regex as re
 def expand(expr):
@@ -31,3 +32,38 @@ def expand(expr):
             sign = not sign
     for fm, to in zip(["+-", "--", "-+"], ["-", "+", "-"]): ans = ans.replace(fm, to)
     return ans
+
+
+#Rail Fence Cipher: Encoding and Decoding
+def encode_rail_fence_cipher(s, n):
+    c = n2 = (n-1)*2
+    a = ""
+    for i in range(n):
+        u, t = 0, c
+        try: a += s[i]
+        except: break
+        while 1:
+            try: a += s[i+c]
+            except: break
+            c += t if (u or not n2-t) else n2-t
+            u = not u
+        c = t-2 if t-2 else n2
+    return a       
+    
+def decode_rail_fence_cipher(s, n):
+    ns = [""]*len(s)
+    c = n2 = (n-1)*2
+    x = 0
+    for i in range(n):
+        u, t = 0, c
+        try: ns[i] += s[x]
+        except: break
+        x+=1
+        while 1:
+            try: ns[i+c] = s[x]
+            except: break
+            c += t if (u or not n2-t) else n2-t
+            u = not u
+            x+=1
+        c = t-2 if t-2 else n2
+    return "".join(ns)
